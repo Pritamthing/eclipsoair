@@ -199,7 +199,7 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
-  const isProd = false;
+  const isProd = true;
   //localStorage for testing cookies in local machine for local files with file://
   if (!isProd) {
     // Check if cookies have already been accepted
