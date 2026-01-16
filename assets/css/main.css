@@ -109,13 +109,13 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--primary-text-color);
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: color-mix(in srgb, var(--primary-color), transparent 25%);
+  color: color-mix(in srgb, var(--primary-text-color), transparent 25%);
   text-decoration: none;
 }
 
@@ -206,6 +206,7 @@ h6 {
 
 .brand-logo {
   margin-left: 150px;
+  max-width: 150px;
 }
 
 .header .logo img {
@@ -648,8 +649,8 @@ h6 {
   font-size: 16px;
   padding: 0 20px;
   margin: -7px -8px -7px 0;
-  background: var(--secondary-color);
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
+  background: var(--accent-color);
   transition: 0.3s;
   border-radius: 0 4px 4px 0;
 }
