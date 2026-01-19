@@ -1798,7 +1798,7 @@ section,
   color: var(--secondary-text-color);
   background-color: color-mix(in srgb,
       var(--secondary-color),
-      transparent 50%);
+      transparent 10%);
   border-color: color-mix(in srgb, var(--secondary-text-color), transparent 80%);
 }
 
@@ -2447,9 +2447,9 @@ section,
 
 .planes {
   display: grid;
-  place-items: end;
+  place-items: center;
   /* Centers both horizontally and vertically in one go */
-  min-height: 450px;
+  min-height: 700px;
 }
 
 .planes img {
