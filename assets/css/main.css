@@ -2445,6 +2445,13 @@ section,
   margin-bottom: 0;
 }
 
+.planes {
+  display: grid;
+  place-items: end;
+  /* Centers both horizontally and vertically in one go */
+  min-height: 450px;
+}
+
 .planes img {
   width: 100%;
   border-radius: 12px;
