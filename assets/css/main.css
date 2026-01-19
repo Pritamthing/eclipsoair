@@ -2252,7 +2252,7 @@ section,
   max-width: 100%;
   /* margin: 0 auto; */
   /* padding: 30px; */
-  background-color: var(--section-background-color);
+  background-color: var(--background-color);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
