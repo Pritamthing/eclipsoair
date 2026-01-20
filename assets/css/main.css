@@ -6,7 +6,7 @@
   --nav-font: "Poppins", sans-serif;
 
   /* Global Colors */
-  --primary-color: #1d264f;
+  --primary-color: #020307;
   --primary-text-color: #ffffff;
   --secondary-color: #f4f5fe;
   --secondary-text-color: #000000;
@@ -21,6 +21,35 @@
 
   /* Smooth scroll */
   scroll-behavior: smooth;
+}
+
+.environmental-policy,
+.contact-section,
+.terms-section {
+  background-color: #162033;
+  color: var(--primary-text-color) !important;
+}
+
+.service-section,
+.footer-section {
+  background-color: #0F172A;
+  color: var(--primary-text-color) !important;
+}
+
+.pet-section {
+  background-color: #162033;
+  color: var(--primary-text-color) !important;
+}
+
+.plane-section,
+.faq-section {
+  background-color: var(--section-background-color);
+  color: var(--primary-text-color) !important;
+}
+
+.pet-section-body-content {
+  background-color: #162033 !important;
+  color: var(--primary-text-color) !important;
 }
 
 .text-primary {
@@ -207,14 +236,19 @@ h6 {
 }
 
 .brand-logo {
-  margin-left: 150px;
+  margin-left: 85px;
   max-width: 150px;
 }
 
+.brand-logo-other {
+  margin-left: 85px;
+  max-width: 100%;
+}
+
 .header .logo img {
-  width: 50%;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   margin-right: 8px;
 }
 
@@ -624,7 +658,7 @@ h6 {
   padding: 6px 8px;
   position: relative;
   border-radius: 4px;
-  border: 1px solid color-mix(in srgb, var(--primary-text-color), transparent 80%);
+  border: 1px solid var(--primary-text-color);
   display: flex;
   background-color: var(--primary-color);
   transition: 0.3s;
@@ -1034,9 +1068,9 @@ section,
 /* Modern Card Container */
 .cat-item {
   background: var(--card-background-color) !important;
-  border: none !important;
-  /* border-radius: 15px !important; */
-  overflow: hidden;
+  border-radius: 15px !important;
+  border: 1px solid #334155;
+  overflow: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   height: 100%;
@@ -1070,20 +1104,9 @@ section,
   font-weight: 700;
   margin-bottom: 1.5rem;
   position: relative;
-  padding-bottom: 10px;
   font-family: var(--heading-font);
 }
 
-.cat-item h4:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary-text-color), var(--primary-text-color));
-  border-radius: 2px;
-}
 
 /* Icon Container */
 .cat-item .icon {
@@ -1095,17 +1118,6 @@ section,
   display: inline-block;
 }
 
-.cat-item .icon:before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, rgba(74, 107, 255, 0.3), rgba(106, 139, 255, 0.1));
-  z-index: -1;
-}
 
 .cat-item .icon img {
   max-height: 80px;
@@ -1253,6 +1265,18 @@ section,
   display: block;
 }
 
+.management-section {
+  background: var(--section-background-color) !important;
+  color: var(--primary-text-color);
+}
+
+.card-body-environmental {
+  background: var(--section-background-color) !important;
+  padding: 2rem !important;
+  color: var(--primary-text-color);
+  border-radius: 12px !important;
+}
+
 .card-body {
   background: var(--card-background-color) !important;
   padding: 2rem !important;
@@ -1261,10 +1285,11 @@ section,
 }
 
 .card-body-black {
-  background: var(--background-color) !important;
+  background: var(--section-background-color) !important;
   padding: 2rem !important;
   color: var(--primary-text-color);
   border-radius: 12px !important;
+  border: 1px solid #334155 !important;
 }
 
 .section-content {
@@ -1307,16 +1332,17 @@ section,
 /* Table Styling */
 .tables .table-bordered {
   width: 100%;
-  background: linear-gradient(135deg, var(--background-color) 0%, var(--background-color) 100%) !important;
-  border: 1px solid !important;
+  background: var(--section-background-color) !important;
+  border: none !important;
   border-radius: 10px;
   overflow: hidden;
   backdrop-filter: blur(10px);
   color: var(--primary-text-color) !important;
+  border-color: var(--card-background-color) !important;
 }
 
 .tables .table-bordered thead {
-  background: linear-gradient(90deg, var(--section-background-color), var(--section-background-color));
+  background: var(--card-background-color);
   border-bottom: 2px solid var(--card-background-color) !important;
 }
 
@@ -1324,22 +1350,19 @@ section,
   /* color: #ffffff !important; */
   font-weight: 600;
   padding: 1rem !important;
-  border-color: var(--section-background-color) !important;
+  border-color: var(--card-background-color) !important;
 }
 
 .tables .table-bordered td {
   /* color: rgba(255, 255, 255, 0.9) !important; */
   padding: 1rem !important;
-  border-color: var(--background-color) !important;
+  border-color: var(--card-background-color) !important;
   font-weight: 500;
 }
 
-.tables .table-bordered tbody tr:nth-child(even) {
-  background: var(--background-color);
-}
-
-.tables .table-bordered tbody tr:hover {
-  background: var(--background-color);
+.tables .table-bordered tbody tr {
+  border-bottom: 1px solid #334155;
+  /* subtle row separator */
 }
 
 /* Register Button */
@@ -1437,7 +1460,7 @@ section,
 }
 
 .about .icon-box {
-  background-color: var(--section-background-color);
+  background-color: #162033;
   color: var(--primary-text-color) !important;
   padding: 50px 40px;
   box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
@@ -1447,8 +1470,8 @@ section,
 }
 
 .about .icon-box i {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -1703,7 +1726,6 @@ section,
 
 .faq .faq-container .faq-item .faq-icon {
   position: absolute;
-  top: 22px;
   left: 20px;
   font-size: 22px;
   line-height: 0;
@@ -1713,7 +1735,6 @@ section,
 
 .faq .faq-container .faq-item .faq-toggle {
   position: absolute;
-  top: 20px;
   right: 20px;
   font-size: 16px;
   line-height: 0;
@@ -1794,12 +1815,11 @@ section,
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
-  border-radius: 0;
   color: var(--secondary-text-color);
   background-color: color-mix(in srgb,
       var(--secondary-color),
       transparent 10%);
-  border-color: color-mix(in srgb, var(--secondary-text-color), transparent 80%);
+  border-color: color-mix(in srgb, var(--section-background-color), transparent 80%);
 }
 
 .contact .email-form input[type="text"]:focus,
@@ -2191,7 +2211,6 @@ section,
 
 .membership-card {
   background-color: var(--card-background-color);
-  /* Slightly lighter navy for the card */
   color: var(--primary-text-color);
   padding: 40px;
   border-radius: 12px;
@@ -2252,7 +2271,7 @@ section,
   max-width: 100%;
   /* margin: 0 auto; */
   /* padding: 30px; */
-  background-color: var(--background-color);
+  background-color: var(--section-background-color);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -2305,8 +2324,6 @@ section,
   color: var(--primary-text-color);
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--primary-text-color);
-  /* display: flex; */
   align-items: center;
 }
 
@@ -2395,7 +2412,7 @@ section,
 }
 
 .spec-card {
-  background-color: #0b111b;
+  background-color: #162033;
   /* Card dark navy background */
   border: 1px solid #1e293b;
   /* Subtle card border */
@@ -2415,7 +2432,7 @@ section,
   font-weight: 700;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid #89909c;
   /* Line under headings */
 }
 
@@ -2457,4 +2474,33 @@ section,
   border-radius: 12px;
   height: auto;
   display: block;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 240px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.environmental img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 240px;
+  border-radius: 12px;
+}
+
+/* FAQ Section Styles */
+.faq-section .faq-container .faq-item {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-background-color);
+  transition: all 0.3s ease-in-out;
 }
