@@ -1827,7 +1827,7 @@ section,
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   background-color: var(--section-background-color);
   border-color: color-mix(in srgb, var(--section-background-color), transparent 80%);
 }
@@ -1837,6 +1837,13 @@ section,
 .contact .email-form textarea:focus {
   border-color: var(--primary-color);
   background-color: #dee0ea;
+  color: black;
+}
+
+.contact .email-form input[type="text"]:not(:focus),
+.contact .email-form input[type="email"]:not(:focus),
+.contact .email-form textarea:not(:focus) {
+  color: var(--primary-text-color);
 }
 
 .contact .email-form input[type="text"]::placeholder,
