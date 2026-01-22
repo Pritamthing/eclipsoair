@@ -548,6 +548,19 @@ h6 {
   }
 }
 
+/* global p font size */
+p {
+  font-size: 14px !important;
+}
+
+.email-form label {
+  font-size: 14px !important;
+}
+
+.col-lg-3.col-md-3.footer-links ul li {
+  line-height: 0.6;
+}
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -693,7 +706,6 @@ h6 {
 
 .footer .footer-newsletter .newsletter-form input[type="submit"]:hover {
   background: var(--primary-text-color);
-  transform: translateY(-2px);
 }
 
 .footer .copyright {
@@ -966,7 +978,7 @@ section,
   color: black;
   background: var(--primary-text-color);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 .hero .animated {
