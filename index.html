@@ -245,12 +245,13 @@
 
         <!-- Added buttons from first section -->
         <div class="d-flex justify-content-center flex-wrap gap-3 mt-4 hero-buttons">
-          <a href="#" class="btn-get-started" data-i18n="home.become.member">
-            Become a Member
+          <a href="#" data-i18n="home.become.member">
+            <button class="app-btn btn-rounded" data-i18n="home.become.member">Become a Member</button>
           </a>
 
-          <a href="#" class="d-flex align-items-center btn-get-started">
-            <span data-i18n="home.book.flight"><i class="bi bi-airplane-fill"></i>Book a Flight</span>
+          <a href="#" data-i18n="home.book.flight">
+            <button class="app-btn btn-rounded" data-i18n="home.book.flight"><i class="bi bi-airplane-fill"></i>Book a
+              Flight</button>
           </a>
         </div>
       </div>
@@ -274,15 +275,11 @@
             <h4 class="mb-5" data-i18n="home.gateway.exclusive.travel">Your Gateway to Exclusive Travel</h4>
             <p class="text-center" data-i18n="home.paragraph.services">
               EclipsoAir isn’t just a private airline; it’s a redefinition of how private air travel should be.
-              Combining
-              unmatched
-              luxury, personalized service, and cutting-edge safety standards, we offer a flight experience that is as
-              unique as
-              your aspirations. Whether you’re traveling for business or leisure, every detail of your journey is
-              meticulously
-              curated to reflect your style and preferences.
+              Combining unmatched luxury, personalized service, and cutting-edge safety standards, we offer a flight
+              experience that is as unique as your aspirations. Whether you’re traveling for business or leisure, every
+              detail of your journey is meticulously curated to reflect your style and preferences.
             </p>
-            <p class="text-center" key="home.paragraph2.services">
+            <p class="text-center" data-i18n="home.paragraph2.services">
               With a focus on exclusivity and customer satisfaction, our services go beyond transportation — we provide
               an
               elevated travel experience. From seamless booking to in-flight indulgence, we ensure that your comfort,
@@ -584,8 +581,8 @@
               </div> -->
               <div class="col-md-12">
                 <div class="d-flex register-now">
-                  <a href="http://core.eclipsoair.com/register/register" class="btn-get-started"
-                    data-i18n="home.register">Register Now</a>
+                  <a href="http://core.eclipsoair.com/register/register"><button data-i18n="home.register"
+                      class="app-btn btn-rounded">Register Now</button></a>
                 </div>
               </div>
             </div>
@@ -704,7 +701,7 @@
           <div class="col-md-6">
             <div class="card-body">
               <div class="spec-section">
-                <p class="mb-4 text-start" data-i18n="home.envpolicy.description">
+                <p class="mb-5 text-start" data-i18n="home.envpolicy.description">
                   Comparative on CO2 emissions for planes operating inter island and Southampton assuming 3 inter-island
                   return flights a day by each of 3 islands and 2 trips to Southampton
                 </p>
@@ -843,10 +840,12 @@
                 <div class="member">
                   <div class="pic"><img src="assets/images/vicky.jpg" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4 data-i18n="home.cto.name">Vicky Adams</h4>
-                    <span data-i18n="home.cto.title" class="bio">Marketing Director</span>
-                    <p style="font-size: 1rem;" data-i18n="home.cto.bio">
-                      -
+                    <h4 data-i18n="home.md.name">Vicky Adams</h4>
+                    <span data-i18n="home.md.title" class="bio">Marketing Director</span>
+                    <p style="font-size: 1rem;" data-i18n="home.md.bio">
+                      Qualified marketing professional and has worked with Karen and John in the past, helping to build
+                      high-growth businesses
+                      worldwide based on technology
                     </p>
                   </div>
                 </div>
@@ -1258,11 +1257,10 @@
               <div>
                 <h3 data-i18n="home.email.us">Email Us</h3>
                 <div class="square-buttons">
-                  <a href="mailto:info@eclipsoair.com" class="btn btn-get-started mb-3"
-                    data-i18n="home.email.team">Email
-                    the Team</a>
-                  <a href="http://core.eclipsoair.com/register/register" class="btn btn-get-started mb-3"
-                    data-i18n="home.register">Register Now</a>
+                  <a href="mailto:info@eclipsoair.com"><button class="app-btn btn-rounded mb-3"
+                      data-i18n="home.email.team">Email the Team</button></a>
+                  <a href="http://core.eclipsoair.com/register/register"><button class="app-btn btn-rounded mb-3"
+                      data-i18n="home.register">Register Now</button></a>
                 </div>
               </div>
             </div>
@@ -1297,7 +1295,7 @@
                   <div class="loading" data-i18n="home.loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message" data-i18n="home.message.sent">Your message has been sent. Thank you!</div>
-                  <button type="submit" data-i18n="home.send.message" class="btn btn-primary">Send Message</button>
+                  <button type="submit" data-i18n="home.send.message" class="app-btn btn-rounded">Send Message</button>
                 </div>
 
               </div>
@@ -1359,7 +1357,8 @@
           <p data-i18n="home.subscribe.to.newsletter">Subscribe to our newsletter and receive the latest news about our
             services!</p>
           <form class="email-form" id="subscription">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="newsletter-form"><input type="email" name="email"><button type="submit" class="app-btn"
+                data-i18n="home.subscribe">Subscribe</button></div>
             <div class="loading" data-i18n="home.loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message" data-i18n="home.subscription.sent">Your subscription request has been sent. Thank
