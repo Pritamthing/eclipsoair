@@ -133,7 +133,7 @@
         <img src="assets/images/logoWhite.svg" alt="" class="hero-bg">
       </a>
     </div>
-    <div class="container-fluid container-xl position-relative d-flex align-items-end justify-content-between">
+    <div class="position-relative d-flex align-items-end justify-content-between navbar-items">
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#home" class="active" data-i18n="home.home">Home </a></li>
@@ -245,11 +245,11 @@
 
         <!-- Added buttons from first section -->
         <div class="d-flex justify-content-center flex-wrap gap-3 mt-4 hero-buttons">
-          <a href="#" data-i18n="home.become.member">
+          <a href="#">
             <button class="app-btn btn-rounded" data-i18n="home.become.member">Become a Member</button>
           </a>
 
-          <a href="#" data-i18n="home.book.flight">
+          <a href="#">
             <button class="app-btn btn-rounded" data-i18n="home.book.flight"><i class="bi bi-airplane-fill"></i>Book a
               Flight</button>
           </a>
@@ -336,9 +336,10 @@
             <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
               <div class="cat-item d-block bg-light text-center rounded">
                 <div class="service-image">
-                  <div class="mb-4">
+                  <div>
                     <img class="img-fluid" src="assets/images/corporate.webp" alt="Icon">
                   </div>
+                  <br>
                   <h4 data-i18n="home.corporate.membership" class="ps-3 pe-3">Corporate Membership</h4>
                   <div class="text-start">
                     <h6 data-i18n="home.register.your.business" class="ps-3 pe-3">1. Register your business</h6>
@@ -359,9 +360,10 @@
             <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
               <div class="cat-item d-block bg-light text-center rounded">
                 <div class="service-image">
-                  <div class="mb-4">
+                  <div>
                     <img class="img-fluid" src="assets/images/family.webp" alt="Icon">
                   </div>
+                  <br>
                   <h4 data-i18n="home.family.membership.title" class="ps-3 pe-3">Family Membership</h4>
 
                   <div class="text-start">
@@ -381,9 +383,10 @@
             <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
               <div class="cat-item d-block bg-light text-center rounded">
                 <div class="service-image">
-                  <div class="mb-4">
+                  <div>
                     <img class="img-fluid" src="assets/images/wing.webp" alt="Icon">
                   </div>
+                  <br>
                   <h4 data-i18n="home.individual.membership.title" class="ps-3 pe-3">Individual Membership</h4>
 
                   <div class="text-start">
@@ -405,9 +408,10 @@
             <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
               <div class="cat-item d-block bg-light text-center rounded">
                 <div class="service-image">
-                  <div class="mb-4">
+                  <div>
                     <img class="img-fluid" src="assets/images/card.webp" alt="Icon">
                   </div>
+                  <br>
                   <h4 data-i18n="home.exclusive.membership.title" class="ps-3 pe-3">Exclusive Membership Card</h4>
 
                   <div class="text-start">
@@ -1397,6 +1401,8 @@
 
   <!-- Main JS File -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="assets/js/i18next.min.js"></script>
+
   <script src="assets/js/main.js"></script>
 </body>
 
