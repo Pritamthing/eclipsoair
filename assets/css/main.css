@@ -236,9 +236,9 @@ h6 {
 }
 
 .brand-logo {
-  margin-left: 150px;
+  margin-left: 85px;
   min-width: 120px;
-  max-width: 150px;
+  max-width: 200px;
   flex-shrink: 0;
 }
 
