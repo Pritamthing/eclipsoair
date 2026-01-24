@@ -1,4 +1,5 @@
 /** main JS file */
+const SUPPORTED_LANGUAGES = ["en", "fr", "ar"];
 
 (function () {
   "use strict";
@@ -53,11 +54,11 @@
     navmenu.addEventListener("click", function (e) {
       e.preventDefault();
       // Get the parent li.dropdown element
-      const parentLi = this.closest('li.dropdown');
+      const parentLi = this.closest("li.dropdown");
       if (parentLi) {
         parentLi.classList.toggle("active");
         // Find the dropdown ul which is a child of the li, not a sibling
-        const dropdownMenu = parentLi.querySelector(':scope > ul');
+        const dropdownMenu = parentLi.querySelector(":scope > ul");
         if (dropdownMenu) {
           dropdownMenu.classList.toggle("dropdown-active");
         }
@@ -130,7 +131,7 @@
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        swiperElement.querySelector(".swiper-config").innerHTML.trim(),
       );
 
       if (swiperElement.classList.contains("swiper-tab")) {
@@ -187,7 +188,7 @@
       const bottom = top + section.offsetHeight;
 
       if (scrollPosition >= top && scrollPosition <= bottom) {
-        navmenulinks.forEach(l => l.classList.remove("active"));
+        navmenulinks.forEach((l) => l.classList.remove("active"));
         navmenulink.classList.add("active");
       } else {
         navmenulink.classList.remove("active");
@@ -247,7 +248,7 @@ setCookie = (cookieName, cookieVal, expDays, isProd = false) => {
     localStorage.setItem(cookieName, true);
     localStorage.setItem(
       "cookies",
-      cookieName + "=" + cookieVal + "; " + expires + "; path=/"
+      cookieName + "=" + cookieVal + "; " + expires + "; path=/",
     );
   }
 };
@@ -293,7 +294,7 @@ forms.forEach(function (e) {
       } else {
         displayError(
           thisForm,
-          "The reCaptcha javascript API url is not loaded!"
+          "The reCaptcha javascript API url is not loaded!",
         );
       }
     } else {
@@ -341,7 +342,7 @@ function email_form_submit(thisForm, formData) {
         thisForm.reset();
       } else {
         throw new Error(
-          data ? data : "Form submission failed and no error message returned"
+          data ? data : "Form submission failed and no error message returned",
         );
       }
     })
@@ -382,14 +383,14 @@ function handleBBCNewsClick(elementId, redirectUrl) {
             ) {
               clearInterval(checkWindowClosed);
               console.log(
-                "BBC News window closed or user navigated away. Redirecting..."
+                "BBC News window closed or user navigated away. Redirecting...",
               );
               window.location.href = redirectUrl;
             }
           } catch (error) {
             // Cross-origin errors occur if the user navigates away
             console.warn(
-              "Unable to access BBC window location. Assuming user navigated away."
+              "Unable to access BBC window location. Assuming user navigated away.",
             );
             clearInterval(checkWindowClosed);
             window.location.href = redirectUrl;
@@ -404,7 +405,151 @@ function handleBBCNewsClick(elementId, redirectUrl) {
   }
 }
 
-function changeLanguage(lng) {
-  alert(`Language changed to: ${lng}`);
-  document.documentElement.lang = lng;
-};
+// function changeLanguage(lng) {
+//   alert(`Language changed to: ${lng}`);
+//   document.documentElement.lang = lng;
+// };
+
+// i18next initialization and language handling
+document.addEventListener("DOMContentLoaded", async function () {
+  const lng = await resolveLanguage();
+  fetch("translations.csv")
+    .then((res) => res.text())
+    .then((csv) => {
+      const translations = csvToJson(csv);
+      const resources = convertToI18next(translations);
+
+      console.log("i18next resources loaded:", resources);
+
+      // Initialize i18next AFTER resources are ready
+      i18next.init(
+        {
+          lng: lng, // Default language
+          debug: false,
+          keySeparator: false, // dots are part of keys
+          resources: resources,
+        },
+        function (err, t) {
+          if (err) console.error("i18next init error:", err);
+          updateContent();
+        },
+      );
+
+      function updateContent() {
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          el.innerHTML = i18next.t(key);
+        });
+      }
+
+      // Language switch function
+      window.changeLanguage = function (lng) {
+        i18next.changeLanguage(lng, () => {
+          console.log("Language changed to:", lng);
+          updateContent();
+          saveLanguage(lng);
+          document.documentElement.lang = lng;
+
+          // Optional: if you want to auto-wrap Arabic content
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            if (lng === "ar") {
+              el.setAttribute("dir", "rtl");
+              el.style.textAlign = "right";
+            } else {
+              el.setAttribute("dir", "ltr");
+              el.style.textAlign = "left";
+            }
+          });
+        });
+      };
+    })
+    .catch((err) => console.error("CSV load error:", err));
+});
+
+// Convert CSV to JSON
+function csvToJson(csv) {
+  const lines = csv.trim().split("\n").filter(Boolean);
+  const headers = lines[0].split(",").map((h) => h.trim());
+  console.log("CSV Headers:", headers);
+
+  const result = {};
+
+  for (let i = 1; i < lines.length; i++) {
+    const row = lines[i].split(",");
+    const key = row[0].trim();
+
+    const obj = {};
+    for (let j = 1; j < headers.length; j++) {
+      obj[headers[j]] = row[j] ? row[j].trim() : "";
+    }
+
+    result[key] = obj;
+  }
+
+  return result;
+}
+
+// Convert flat JSON to i18next resources format
+function convertToI18next(flat) {
+  const resources = {
+    en: { translation: {} },
+    fr: { translation: {} },
+    ar: { translation: {} },
+  };
+
+  Object.keys(flat).forEach((key) => {
+    const item = flat[key];
+
+    resources.en.translation[key] = item["UK English"] || "";
+    resources.fr.translation[key] = item["French"] || "";
+    resources.ar.translation[key] = item["Arabic"] || "";
+  });
+
+  return resources;
+}
+
+// Get saved preference if exists
+function getSavedLanguage() {
+  return localStorage.getItem("site_language");
+}
+
+// Save language preference
+function saveLanguage(lng) {
+  localStorage.setItem("site_language", lng);
+}
+
+// Get country by IP and map to language
+async function detectLanguageByIP() {
+  try {
+    const res = await fetch("https://ipwho.is/");
+    const data = await res.json();
+
+    const countryCode = (data.country_code || "").toUpperCase();
+
+    if (SUPPORTED_LANGUAGES.includes(countryCode)) {
+      return countryCode;
+    }
+  } catch (e) {
+    console.warn("IP detection failed", e);
+  }
+
+  return "en"; // default fallback to 'en'
+}
+
+// ⭐ Main language resolver
+async function resolveLanguage() {
+  // 1) preference exists? yes, use it else continue
+  const saved = getSavedLanguage();
+  if (saved && SUPPORTED_LANGUAGES.includes(saved)) {
+    return saved;
+  }
+
+  // 2) detect from IP address of the user
+  const detected = await detectLanguageByIP();
+  if (detected) {
+    return detected;
+  }
+
+  // 3) fallback → English
+  return "en";
+}
