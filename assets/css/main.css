@@ -2567,3 +2567,93 @@ section,
     padding: 25px;
   }
 }
+
+/* --- Aurora effect --- */
+.aurora {
+  /* Customise these per-instance via inline styles or a class */
+  --c1: #2c2f61;
+  --c2: #9175a1;
+  --c3: #66beab;
+  --c4: #a4dbb6;
+  --speed: 2;
+
+  /* Internal tunables */
+  --dur: calc(10s / var(--speed));
+  --grad: linear-gradient(
+    135deg,
+    var(--c1),
+    var(--c2),
+    var(--c3),
+    var(--c4),
+    var(--c1)
+  );
+  --bg-size: 200% 200%;
+  --blur: 12px;
+  --glow-opacity: 0.6;
+
+  position: relative;
+  display: inline-block;
+  isolation: isolate; /* contains the glow layer */
+  color: transparent;
+  background-image: var(--grad);
+  background-size: var(--bg-size);
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: aurora var(--dur) ease-in-out infinite alternate;
+}
+
+/* Glow layer */
+.aurora::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background-image: var(--grad);
+  background-size: var(--bg-size);
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  filter: blur(var(--blur));
+  opacity: var(--glow-opacity);
+
+  animation: aurora var(--dur) ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Variant: subtle glow */
+.aurora--subtle {
+  --blur: 9px;
+  --glow-opacity: 0.4;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .aurora::before {
+    animation: none;
+  }
+}
