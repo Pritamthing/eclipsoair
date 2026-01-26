@@ -413,10 +413,11 @@ function handleBBCNewsClick(elementId, redirectUrl) {
 // i18next initialization and language handling
 document.addEventListener("DOMContentLoaded", async function () {
   const lng = await resolveLanguage();
-  fetch("translations.csv")
+  fetch("assets/translations.csv")
     .then((res) => res.text())
     .then((csv) => {
       const translations = csvToJson(csv);
+      console.log("CSV translations loaded:", translations);
       const resources = convertToI18next(translations);
 
       console.log("i18next resources loaded:", resources);
@@ -448,18 +449,18 @@ document.addEventListener("DOMContentLoaded", async function () {
           console.log("Language changed to:", lng);
           updateContent();
           saveLanguage(lng);
-          document.documentElement.lang = lng;
+          // document.documentElement.lang = lng;
 
           // Optional: if you want to auto-wrap Arabic content
-          document.querySelectorAll("[data-i18n]").forEach((el) => {
-            if (lng === "ar") {
-              el.setAttribute("dir", "rtl");
-              el.style.textAlign = "right";
-            } else {
-              el.setAttribute("dir", "ltr");
-              el.style.textAlign = "left";
-            }
-          });
+          // document.querySelectorAll("[data-i18n]").forEach((el) => {
+          //   if (lng === "ar") {
+          //     el.setAttribute("dir", "rtl");
+          //     el.style.textAlign = "right";
+          //   } else {
+          //     el.setAttribute("dir", "ltr");
+          //     el.style.textAlign = "left";
+          //   }
+          // });
         });
       };
     })
@@ -468,25 +469,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 // Convert CSV to JSON
 function csvToJson(csv) {
-  const lines = csv.trim().split("\n").filter(Boolean);
-  const headers = lines[0].split(",").map((h) => h.trim());
-  console.log("CSV Headers:", headers);
-
-  const result = {};
-
-  for (let i = 1; i < lines.length; i++) {
-    const row = lines[i].split(",");
-    const key = row[0].trim();
-
-    const obj = {};
-    for (let j = 1; j < headers.length; j++) {
-      obj[headers[j]] = row[j] ? row[j].trim() : "";
-    }
-
-    result[key] = obj;
-  }
-
-  return result;
+  const parsed = Papa.parse(csv, {
+    header: true,
+    skipEmptyLines: true,
+  });
+  return parsed.data;
 }
 
 // Convert flat JSON to i18next resources format
@@ -500,9 +487,9 @@ function convertToI18next(flat) {
   Object.keys(flat).forEach((key) => {
     const item = flat[key];
 
-    resources.en.translation[key] = item["UK English"] || "";
-    resources.fr.translation[key] = item["French"] || "";
-    resources.ar.translation[key] = item["Arabic"] || "";
+    resources.en.translation[item.Key] = item["UK English"] || "";
+    resources.fr.translation[item.Key] = item["French"] || "";
+    resources.ar.translation[item.Key] = item["Arabic"] || "";
   });
 
   return resources;
