@@ -432,11 +432,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         },
         function (err, t) {
           if (err) console.error("i18next init error:", err);
-          updateContent();
+          updateContent(lng);
         },
       );
 
-      function updateContent() {
+      function updateContent(lng) {
+        document.getElementById("language").innerText = lng.toUpperCase();
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           el.innerHTML = i18next.t(key);
@@ -447,9 +448,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       window.changeLanguage = function (lng) {
         i18next.changeLanguage(lng, () => {
           console.log("Language changed to:", lng);
-          updateContent();
+          updateContent(lng);
           saveLanguage(lng);
-          // document.documentElement.lang = lng;
+          document.documentElement.lang = lng;
 
           // Optional: if you want to auto-wrap Arabic content
           // document.querySelectorAll("[data-i18n]").forEach((el) => {
