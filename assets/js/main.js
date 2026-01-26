@@ -441,6 +441,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           el.innerHTML = i18next.t(key);
+          el.classList.remove("text-rtl", "text-ltr");
+          el.classList.add(lng === "ar" ? "text-rtl" : "text-ltr");
         });
       }
 
