@@ -2605,6 +2605,27 @@ section,
   animation: aurora var(--dur) ease-in-out infinite alternate;
 }
 
+.paragraph-spacing {
+  font-size: 1rem !important;
+}
+.list-counter {
+  counter-reset: item;
+  list-style: none;
+  padding-left: 0;
+}
+
+.list-counter li {
+  counter-increment: item;
+  margin-bottom: 8px;
+  font-size: 14px !important;
+}
+
+.list-counter li::before {
+  content: "●";
+  font-weight: bold;
+  margin-right: 6px;
+}
+
 /* Glow layer */
 .aurora::before {
   content: attr(data-text);
