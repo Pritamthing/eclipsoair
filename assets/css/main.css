@@ -2632,6 +2632,13 @@ ul li::before {
   font-weight: bold;
   margin-right: 6px;
 }
+.content > ol li::before,
+.content > ul li::before {
+  content: "●";
+  font-weight: bold;
+  margin-right: 6px;
+  font-size: 7px;
+}
 
 .navmenu ul li::before,
 .footer-links ul li::before,
