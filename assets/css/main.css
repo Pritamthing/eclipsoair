@@ -2633,6 +2633,13 @@ ul li::before {
   margin-right: 6px;
 }
 
+.navmenu ul li::before,
+.footer-links ul li::before,
+.footer-links ol li::before,
+.refreshments ul li::before {
+  content: none;
+  margin-right: 0;
+}
 /* Glow layer */
 .aurora::before {
   content: attr(data-text);
