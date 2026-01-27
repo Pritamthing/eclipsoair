@@ -2626,6 +2626,13 @@ section,
   margin-right: 6px;
 }
 
+ol li::before,
+ul li::before {
+  content: "●";
+  font-weight: bold;
+  margin-right: 6px;
+}
+
 /* Glow layer */
 .aurora::before {
   content: attr(data-text);
