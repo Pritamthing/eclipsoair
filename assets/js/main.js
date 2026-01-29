@@ -1,4 +1,9 @@
 /** main JS file */
+const languages = [
+  { code: "en", label: "English" },
+  { code: "fr", label: "French" },
+  // { code: "ar", label: "Arabic" },
+];
 
 (function () {
   "use strict";
@@ -53,11 +58,11 @@
     navmenu.addEventListener("click", function (e) {
       e.preventDefault();
       // Get the parent li.dropdown element
-      const parentLi = this.closest('li.dropdown');
+      const parentLi = this.closest("li.dropdown");
       if (parentLi) {
         parentLi.classList.toggle("active");
         // Find the dropdown ul which is a child of the li, not a sibling
-        const dropdownMenu = parentLi.querySelector(':scope > ul');
+        const dropdownMenu = parentLi.querySelector(":scope > ul");
         if (dropdownMenu) {
           dropdownMenu.classList.toggle("dropdown-active");
         }
@@ -130,7 +135,7 @@
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        swiperElement.querySelector(".swiper-config").innerHTML.trim(),
       );
 
       if (swiperElement.classList.contains("swiper-tab")) {
@@ -187,7 +192,7 @@
       const bottom = top + section.offsetHeight;
 
       if (scrollPosition >= top && scrollPosition <= bottom) {
-        navmenulinks.forEach(l => l.classList.remove("active"));
+        navmenulinks.forEach((l) => l.classList.remove("active"));
         navmenulink.classList.add("active");
       } else {
         navmenulink.classList.remove("active");
@@ -199,6 +204,17 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
+  const ul = document.getElementById("language-list");
+
+  languages.forEach((lang) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+    <button onclick="changeLanguage('${lang.code}')" class="btn-change-language">
+      ${lang.label}
+    </button>
+  `;
+    ul.appendChild(li);
+  });
   const isProd = true;
   //localStorage for testing cookies in local machine for local files with file://
   if (!isProd) {
@@ -247,7 +263,7 @@ setCookie = (cookieName, cookieVal, expDays, isProd = false) => {
     localStorage.setItem(cookieName, true);
     localStorage.setItem(
       "cookies",
-      cookieName + "=" + cookieVal + "; " + expires + "; path=/"
+      cookieName + "=" + cookieVal + "; " + expires + "; path=/",
     );
   }
 };
@@ -293,7 +309,7 @@ forms.forEach(function (e) {
       } else {
         displayError(
           thisForm,
-          "The reCaptcha javascript API url is not loaded!"
+          "The reCaptcha javascript API url is not loaded!",
         );
       }
     } else {
@@ -341,7 +357,7 @@ function email_form_submit(thisForm, formData) {
         thisForm.reset();
       } else {
         throw new Error(
-          data ? data : "Form submission failed and no error message returned"
+          data ? data : "Form submission failed and no error message returned",
         );
       }
     })
@@ -382,14 +398,14 @@ function handleBBCNewsClick(elementId, redirectUrl) {
             ) {
               clearInterval(checkWindowClosed);
               console.log(
-                "BBC News window closed or user navigated away. Redirecting..."
+                "BBC News window closed or user navigated away. Redirecting...",
               );
               window.location.href = redirectUrl;
             }
           } catch (error) {
             // Cross-origin errors occur if the user navigates away
             console.warn(
-              "Unable to access BBC window location. Assuming user navigated away."
+              "Unable to access BBC window location. Assuming user navigated away.",
             );
             clearInterval(checkWindowClosed);
             window.location.href = redirectUrl;
@@ -403,8 +419,3 @@ function handleBBCNewsClick(elementId, redirectUrl) {
     console.error(`Element with ID "${elementId}" not found.`);
   }
 }
-
-function changeLanguage(lng) {
-  alert(`Language changed to: ${lng}`);
-  document.documentElement.lang = lng;
-};
