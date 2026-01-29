@@ -6,10 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     .then((res) => res.text())
     .then((csv) => {
       const translations = csvToJson(csv);
-      console.log("CSV translations loaded:", translations);
       const resources = convertToI18next(translations);
-
-      console.log("i18next resources loaded:", resources);
 
       // Initialize i18next AFTER resources are ready
       i18next.init(
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Language switch function
       window.changeLanguage = function (lng) {
         i18next.changeLanguage(lng, () => {
-          console.log("Language changed to:", lng);
           updateContent(lng);
           saveLanguage(lng);
           document.documentElement.lang = lng;
