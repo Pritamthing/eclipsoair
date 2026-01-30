@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           el.innerHTML = i18next.t(key);
+          // el.innerHTML = resources[lng]?.translation[key] || key;
           el.classList.remove("text-rtl", "text-ltr");
           el.classList.add(dir === "ltr" ? "text-ltr" : "text-rtl");
         });
@@ -89,10 +90,12 @@ function saveLanguage(lng) {
 // Get country by IP and map to language
 async function detectLanguageByIP() {
   try {
-    const res = await fetch("https://ipwho.is/");
+    // free for all usage, no key required
+    const res = await fetch("https://api.country.is");
     const data = await res.json();
 
-    const countryCode = (data.country_code || "").toUpperCase();
+    const countryCode = (data.country || "").toLowerCase();
+    debugger;
 
     if (SUPPORTED_LANGUAGES.includes(countryCode)) {
       return countryCode;
@@ -101,7 +104,7 @@ async function detectLanguageByIP() {
     console.warn("IP detection failed", e);
   }
 
-  return "en"; // default fallback to 'en'
+  return "en";
 }
 
 // ⭐ Main language resolver
@@ -115,6 +118,7 @@ async function resolveLanguage() {
   // 2) detect from IP address of the user
   const detected = await detectLanguageByIP();
   if (detected) {
+    saveLanguage(detected);
     return detected;
   }
 

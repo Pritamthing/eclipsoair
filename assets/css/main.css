@@ -658,7 +658,6 @@ p {
 
 ul li,
 ol li {
-  list-style-type: none;
   font-size: 14px !important;
 }
 .footer .footer-links ul li {
@@ -2626,27 +2625,6 @@ section,
   margin-right: 6px;
 }
 
-ol li::before,
-ul li::before {
-  content: "●";
-  font-weight: bold;
-  margin-right: 6px;
-}
-.content > ol li::before,
-.content > ul li::before {
-  content: "●";
-  font-weight: bold;
-  margin-right: 6px;
-  font-size: 7px;
-}
-
-.navmenu ul li::before,
-.footer-links ul li::before,
-.footer-links ol li::before,
-.refreshments ul li::before {
-  content: none;
-  margin-right: 0;
-}
 /* Glow layer */
 .aurora::before {
   content: attr(data-text);
