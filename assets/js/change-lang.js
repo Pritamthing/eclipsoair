@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           document.getElementById("language").innerText = lng.toUpperCase();
         }
         const dir = i18next.dir(lng);
-
+        console.log("resouces:", resources);
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           el.innerHTML = i18next.t(key);
