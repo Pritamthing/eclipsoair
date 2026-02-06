@@ -319,17 +319,6 @@ forms.forEach(function (e) {
 });
 
 function email_form_submit(thisForm, formData) {
-  if (!$("#emailPublicKey").val()) {
-    alert("no public key is provided");
-  }
-  emailjs.init({
-    publicKey: $("#emailPublicKey").val(),
-  });
-  const EMAIL_SERVICE_ID = $("#serviceId").val();
-  let EMAIL_TEMPLATE_ID = $("#templateId").val();
-  if (thisForm.id === "subscription") {
-    EMAIL_TEMPLATE_ID = $("#subTemplateId").val();
-  }
   const templateParams = {
     subject: formData.get("subject"),
     name: formData.get("name"),
@@ -338,16 +327,10 @@ function email_form_submit(thisForm, formData) {
     from_name: formData.get("name"),
     from_email: formData.get("email"),
   };
-  var data = {
-    service_id: EMAIL_SERVICE_ID,
-    template_id: EMAIL_TEMPLATE_ID,
-    user_id: $("#emailPublicKey").val(),
-    template_params: templateParams,
-  };
 
-  $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
+  $.ajax("https://core.eclipsoair.com/contact", {
     type: "POST",
-    data: JSON.stringify(data),
+    data: JSON.stringify(templateParams),
     contentType: "application/json",
   })
     .done(function (data) {
