@@ -66,7 +66,6 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <!-- Smartsupp Live Chat script -->
@@ -189,29 +188,11 @@
         <li class="dropdown">
           <a href="#">
             <i class="bi bi-translate px-2"></i>
-            <span>EN</span>
+            <span id="language">EN</span>
             <i class="bi bi-chevron-down toggle-dropdown"></i>
           </a>
 
-          <ul>
-            <li>
-              <button onclick="changeLanguage('en')" class="btn-change-language">
-                English
-              </button>
-            </li>
-
-            <li>
-              <button onclick="changeLanguage('fr')" class="btn-change-language">
-                French
-              </button>
-            </li>
-
-            <li>
-              <button onclick="changeLanguage('ar')" class="btn-change-language">
-                Arabic
-              </button>
-            </li>
-          </ul>
+          <ul id="language-list"></ul>
         </li>
 
         </ul>
@@ -250,8 +231,8 @@
           </a>
 
           <a href="#">
-            <button class="app-btn btn-rounded" data-i18n="home.book.flight"><i class="bi bi-airplane-fill"></i>Book a
-              Flight</button>
+            <button class="app-btn btn-rounded"><i class="bi bi-airplane-fill"></i><span
+                data-i18n="home.book.flight">Book a Flight</span></button>
           </a>
         </div>
       </div>
@@ -914,7 +895,7 @@
             </div>
             <div class="row gy-4 icon-boxes">
               <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box text-secondary text-center">
+                <div class="icon-box text-secondary align-items-center">
                   <i class="bi bi-house-door"></i>
                   <h3 data-i18n="home.lounges.title" class="text-secondary text-center">Private Lounges</h3>
                   <p data-i18n="home.lounges.desc">Comfortable, luxurious lounges wherever you
@@ -924,7 +905,7 @@
               </div> <!-- End Icon Box -->
 
               <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box text-secondary text-center">
+                <div class="icon-box text-secondary align-items-center">
                   <i class="bi bi-person-walking"></i>
                   <h3 data-i18n="home.security.title" class="text-secondary text-center">No security queues</h3>
                   <p data-i18n="home.security.desc">Simply bring your passport for identification
@@ -934,7 +915,7 @@
               </div> <!-- End Icon Box -->
 
               <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon-box text-secondary text-center">
+                <div class="icon-box text-secondary align-items-center">
                   <i class="bi bi-cup-straw"></i>
                   <h3 data-i18n="home.snacks.title" class="text-secondary text-center">Free snacks and a mini-bar</h3>
                   <p data-i18n="home.snacks.desc">Help yourself to our fully stocked mini-bar</p>
@@ -943,7 +924,7 @@
               </div> <!-- End Icon Box -->
 
               <div class="col-md-3" data-aos="fade-up" data-aos-delay="500">
-                <div class="icon-box text-secondary text-center">
+                <div class="icon-box text-secondary align-items-center">
                   <i class="bi bi-airplane"></i>
                   <h3 data-i18n="home.planes.near.lounge.title" class="text-secondary text-center">Planes stand close to
                     the lounge
@@ -1323,8 +1304,7 @@
             <p data-i18n="home.full.address">SAYE Farm, Mannez, St Anne, Alderney, GY9 3YJ</p>
             <p class="mt-3"><strong data-i18n="home.phone">Phone:</strong> <span data-i18n="home.phone.number">+44 7839
                 702542</span></p>
-            <p><strong data-i18n="home.email">Email:</strong> <span
-                data-i18n="home.email.info">info@eclipsoair.com</span>
+            <p><strong data-i18n="home.email">Email</strong> <span>: info@eclipsoair.com</span>
             </p>
           </div>
           <div class="social-links d-flex mt-4">
@@ -1387,19 +1367,20 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="assets/vendor/jquery-3.4.1.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
   <!-- Main JS File -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="assets/js/i18next.min.js"></script>
+  <script src="assets/vendor/i18next.min.js"></script>
+
+  <script src="assets/vendor/papaparse.min.js"></script>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/change-lang.js"></script>
 </body>
 
 </html>

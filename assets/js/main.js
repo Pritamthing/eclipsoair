@@ -1,4 +1,9 @@
 /** main JS file */
+const languages = [
+  { code: "en", label: "English" },
+  { code: "fr", label: "French" },
+  // { code: "ar", label: "Arabic" },
+];
 
 (function () {
   "use strict";
@@ -53,11 +58,11 @@
     navmenu.addEventListener("click", function (e) {
       e.preventDefault();
       // Get the parent li.dropdown element
-      const parentLi = this.closest('li.dropdown');
+      const parentLi = this.closest("li.dropdown");
       if (parentLi) {
         parentLi.classList.toggle("active");
         // Find the dropdown ul which is a child of the li, not a sibling
-        const dropdownMenu = parentLi.querySelector(':scope > ul');
+        const dropdownMenu = parentLi.querySelector(":scope > ul");
         if (dropdownMenu) {
           dropdownMenu.classList.toggle("dropdown-active");
         }
@@ -130,7 +135,7 @@
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        swiperElement.querySelector(".swiper-config").innerHTML.trim(),
       );
 
       if (swiperElement.classList.contains("swiper-tab")) {
@@ -187,7 +192,7 @@
       const bottom = top + section.offsetHeight;
 
       if (scrollPosition >= top && scrollPosition <= bottom) {
-        navmenulinks.forEach(l => l.classList.remove("active"));
+        navmenulinks.forEach((l) => l.classList.remove("active"));
         navmenulink.classList.add("active");
       } else {
         navmenulink.classList.remove("active");
@@ -199,6 +204,17 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
+  const ul = document.getElementById("language-list");
+
+  languages.forEach((lang) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+    <button onclick="changeLanguage('${lang.code}')" class="btn-change-language">
+      ${lang.label}
+    </button>
+  `;
+    ul.appendChild(li);
+  });
   const isProd = true;
   //localStorage for testing cookies in local machine for local files with file://
   if (!isProd) {
@@ -247,7 +263,7 @@ setCookie = (cookieName, cookieVal, expDays, isProd = false) => {
     localStorage.setItem(cookieName, true);
     localStorage.setItem(
       "cookies",
-      cookieName + "=" + cookieVal + "; " + expires + "; path=/"
+      cookieName + "=" + cookieVal + "; " + expires + "; path=/",
     );
   }
 };
@@ -293,7 +309,7 @@ forms.forEach(function (e) {
       } else {
         displayError(
           thisForm,
-          "The reCaptcha javascript API url is not loaded!"
+          "The reCaptcha javascript API url is not loaded!",
         );
       }
     } else {
@@ -303,17 +319,6 @@ forms.forEach(function (e) {
 });
 
 function email_form_submit(thisForm, formData) {
-  if (!$("#emailPublicKey").val()) {
-    alert("no public key is provided");
-  }
-  emailjs.init({
-    publicKey: $("#emailPublicKey").val(),
-  });
-  const EMAIL_SERVICE_ID = $("#serviceId").val();
-  let EMAIL_TEMPLATE_ID = $("#templateId").val();
-  if (thisForm.id === "subscription") {
-    EMAIL_TEMPLATE_ID = $("#subTemplateId").val();
-  }
   const templateParams = {
     subject: formData.get("subject"),
     name: formData.get("name"),
@@ -322,16 +327,10 @@ function email_form_submit(thisForm, formData) {
     from_name: formData.get("name"),
     from_email: formData.get("email"),
   };
-  var data = {
-    service_id: EMAIL_SERVICE_ID,
-    template_id: EMAIL_TEMPLATE_ID,
-    user_id: $("#emailPublicKey").val(),
-    template_params: templateParams,
-  };
 
-  $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
+  $.ajax("https://core.eclipsoair.com/contact", {
     type: "POST",
-    data: JSON.stringify(data),
+    data: JSON.stringify(templateParams),
     contentType: "application/json",
   })
     .done(function (data) {
@@ -341,7 +340,7 @@ function email_form_submit(thisForm, formData) {
         thisForm.reset();
       } else {
         throw new Error(
-          data ? data : "Form submission failed and no error message returned"
+          data ? data : "Form submission failed and no error message returned",
         );
       }
     })
@@ -382,14 +381,14 @@ function handleBBCNewsClick(elementId, redirectUrl) {
             ) {
               clearInterval(checkWindowClosed);
               console.log(
-                "BBC News window closed or user navigated away. Redirecting..."
+                "BBC News window closed or user navigated away. Redirecting...",
               );
               window.location.href = redirectUrl;
             }
           } catch (error) {
             // Cross-origin errors occur if the user navigates away
             console.warn(
-              "Unable to access BBC window location. Assuming user navigated away."
+              "Unable to access BBC window location. Assuming user navigated away.",
             );
             clearInterval(checkWindowClosed);
             window.location.href = redirectUrl;
@@ -403,8 +402,3 @@ function handleBBCNewsClick(elementId, redirectUrl) {
     console.error(`Element with ID "${elementId}" not found.`);
   }
 }
-
-function changeLanguage(lng) {
-  alert(`Language changed to: ${lng}`);
-  document.documentElement.lang = lng;
-};
