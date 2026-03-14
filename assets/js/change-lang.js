@@ -47,6 +47,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       };
     })
     .catch((err) => console.error("CSV load error:", err));
+  const preloader = document.querySelector("#preloader");
+  if (preloader) {
+    window.addEventListener("load", () => {
+      preloader.remove();
+    });
+  }
 });
 
 // Convert CSV to JSON
