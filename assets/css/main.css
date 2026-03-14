@@ -1886,7 +1886,7 @@ section,
 }
 
 .terms-headings {
-  font-size: var(--bs-body-font-size);
+  font-size: 1.5rem;
   font-family: "EB Garamond", serif;
 }
 
