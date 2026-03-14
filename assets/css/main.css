@@ -961,7 +961,7 @@ section,
 
 .btn-change-language {
   width: 100%;
-  text-align: center;
+  text-align: start;
   color: var(--primary-text-color);
   background: var(--primary-color);
   font-family: var(--heading-font);
@@ -969,8 +969,8 @@ section,
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 10px 28px 12px 28px;
-  margin-left: 10px;
+  padding: 10px 10px;
+  margin-left: 5px;
   /* border-radius: 50px; */
   border: 0px;
   transition: 0.5s;
